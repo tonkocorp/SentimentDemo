@@ -9,7 +9,8 @@ import plotly.express as px
 import sqlite3
 import MySQLStatements as sql
 
-
+app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 #SQL--------------------------------------------------------------
 conn = sqlite3.connect('songs.db')
 data = pd.read_sql_query(sql.selectAll, conn)
@@ -46,8 +47,7 @@ fig1 = px.scatter(position, x="Position", y="SentimentScore",
 #-----------------------------------------------------------------
 
 
-app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
-server = app.server
+
 app.title = "Sentiment Analysis of the Top Songs on Spotify: Daily Updates (pending)!"
 
 app.layout = html.Div(
